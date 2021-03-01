@@ -1,0 +1,55 @@
+.scrollBox {
+  height: 325px;
+  min-width: 450px;
+  max-width: 550px;
+  margin: auto;
+  overflow: auto;
+  font-family: Lato;
+}
+
+.stamp {
+  float: right;
+}
+
+.chatList {
+  margin: auto;
+  width: 40%;
+  min-width: 400px;
+  max-width: 550px;
+  padding: 5px;
+}
+
+.loading {
+  text-align: center;
+}
+
+.chat {
+  border: 1px solid grey;
+  border-color: rgba(0, 0, 0, 0.15);
+  background-color: white;
+  margin-bottom: 5px;
+  padding: 2px;
+  padding-bottom: 5px;
+  border-radius: 5px;
+}
+
+.chat table {
+  width: 100%;
+  padding-top: 5px
+}
+
+.delete {
+  float: right;
+  height: 20px;
+  width: 20px;
+  margin: 0;
+  border: none;
+  background-color: transparent;
+  background-image: url('https://image.flaticon.com/icons/png/512/126/126468.png');
+  background-size: 20px 20px;
+  border-radius: 20%;
+}
+
+.delete:hover {
+  background-color: red;
+}
