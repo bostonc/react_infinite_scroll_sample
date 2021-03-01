@@ -3,6 +3,7 @@ import { render } from "react-dom";
 import "./style.css";
 
 /*
+Application Requirements:
 1. All messages are displayed in a list.
 2. Each message has its content, senderUuid , and sentAt properties displayed.
 3. Messages are displayed at-most once. If there are duplicated messages, we would like
@@ -28,7 +29,8 @@ class App extends Component {
 // Represents a formatted list of Chat objects
 // Filters out duplicate messages, defined as two objects with
 // identical uuid and content.
-// Props: a list of JSON message objects called msgs
+// Props:
+//    msgs: a list of JSON message objects called msgs
 // QUESTION: are we sure we don't want to check for user in the duplicate
 // check? Are the same message with the same ID from different users possible?
 // Should that be counted as a duplicate?
@@ -45,6 +47,8 @@ class ChatList extends Component {
       loading: false
     };
   }
+  // This hook is used to add a listener to load more chats when the user
+  // has scrolled to the bottom of the list.
   componentDidMount() {
     let sb = this.refs.scrollBox;
     sb.addEventListener("scroll", () => {
@@ -82,6 +86,8 @@ class ChatList extends Component {
         onDelete={this.handleDelete} />
       );
   };
+  // Removes duplicates, defined as a message object with identical
+  // uuid and content. Does NOT check sender field.
   filterDuplicates = (msgs) => {
     return msgs.reduce((accum, current) => {
       const seen = accum.find(
@@ -118,7 +124,10 @@ class ChatList extends Component {
 }
 
 // Represents a single chat message.
-// Props: JSON message object called msg
+// Props: 
+//    msg: a JSON message object
+//    id: a string of message uuid+content
+//    onDelete: a callback to handle a delete chat button press
 class Chat extends Component {
   render() {
     return (
@@ -146,14 +155,12 @@ class Chat extends Component {
 }
 
 // Represents a sentAt string in a pretty format
-// Props: the stamp string from a message object called stamp
+// Props:
+//    stamp: a datetime string from the message object
 class PrettyTimestamp extends Component {
-  // Note: member functions use experimental syntax to
-  // bind with 'this'. Monitor for anomalous behavior.
-
   // Converts a string into a more human-friendly format.
   // Params: a string of the form "2015-05-22T13:55:10.542Z"
-  formatStamp = s => {
+  formatStamp = (s) => {
     let options = {
       day: "numeric",
       weekday: "long",
